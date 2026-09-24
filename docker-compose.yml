@@ -1,0 +1,59 @@
+services:
+  yaga-neo4j:
+    image: neo4j:5.26-community
+    container_name: yaga-neo4j
+    restart: unless-stopped
+    ports:
+      - "7474:7474" # HTTP Browser UI
+      - "7687:7687" # Bolt Binary Protocol
+    environment:
+      - NEO4J_AUTH=neo4j/yagasocial2026
+      - NEO4J_PLUGINS=["apoc"]
+      - NEO4J_dbms_security_procedures_unrestricted=apoc.*
+      - NEO4J_dbms_memory_heap_initial__size=512m
+      - NEO4J_dbms_memory_heap_max__size=1024m
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+    networks:
+      - yaga-network
+    healthcheck:
+      test: ["CMD-SHELL", "cypher-shell -u neo4j -p yagasocial2026 'RETURN 1' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  yaga-rustfs:
+    image: rustfs/rustfs:latest
+    container_name: yaga-rustfs
+    restart: unless-stopped
+    ports:
+      - "9000:9000" # S3 API
+      - "9001:9001" # Web Console UI
+    environment:
+      - RUSTFS_ACCESS_KEY=yagaadmin
+      - RUSTFS_SECRET_KEY=yagasocialsecret2026
+    volumes:
+      - rustfs_data:/data
+    networks:
+      - yaga-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9000/ || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  neo4j_data:
+    name: yaga_neo4j_data
+  neo4j_logs:
+    name: yaga_neo4j_logs
+  rustfs_data:
+    name: yaga_rustfs_data
+
+networks:
+  yaga-network:
+    name: yaga-network
+    driver: bridge
