@@ -1,6 +1,6 @@
 # Tareas de Desarrollo: Backend 2 (Neo4j Graph & WebSockets)
-**Responsable Principal:** Andy (Backend Engineer 2)  
-**Colaborador / Revisión:** Yandris (Tech Lead)
+**Módulo:** Backend 2  
+**Revisión:** Tech Lead
 
 ---
 

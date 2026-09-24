@@ -1,6 +1,6 @@
 # Tareas de Desarrollo: Frontend (React, Vite & Tailwind)
-**Responsable Principal:** Allison (Frontend Engineer)  
-**Colaborador / Revisión:** Yandris (Tech Lead)
+**Módulo:** Frontend SPA  
+**Revisión:** Tech Lead
 
 ---
 

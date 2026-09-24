@@ -1,6 +1,6 @@
 # Tareas de Desarrollo: Backend 1 (Auth, Storage & Push)
-**Responsable Principal:** Gino (Backend Engineer 1)  
-**Colaborador / Revisión:** Yandris (Tech Lead)
+**Módulo:** Backend 1  
+**Revisión:** Tech Lead
 
 ---
 
