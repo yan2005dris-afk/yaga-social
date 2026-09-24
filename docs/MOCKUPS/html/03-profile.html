@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relaymesh — Maya Krishnan Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f1f3f7; }
+  </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen">
+
+  <!-- Top Navigation Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-50 px-4 lg:px-8 py-2.5 flex items-center justify-between shadow-sm">
+    <div class="flex items-center gap-3">
+      <a href="02-feed.html" class="flex items-center gap-2 text-xs font-semibold text-slate-600 hover:text-indigo-600">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Back to feed</span>
+      </a>
+    </div>
+    <div class="flex items-center gap-3">
+      <button class="px-3.5 py-1.5 border border-slate-200 hover:bg-slate-50 text-slate-700 rounded-xl text-xs font-semibold flex items-center gap-1.5">
+        <i class="fa-regular fa-share-from-square"></i>
+        <span>Share</span>
+      </button>
+      <button class="px-4 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold shadow-md shadow-indigo-600/20">
+        Edit Profile
+      </button>
+    </div>
+  </header>
+
+  <!-- Layout Container -->
+  <div class="max-w-7xl mx-auto px-4 lg:px-8 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="lg:col-span-3 space-y-4">
+      <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+        <div class="flex items-center gap-3">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80" class="w-12 h-12 rounded-full object-cover ring-2 ring-indigo-500">
+          <div>
+            <h3 class="font-bold text-sm text-slate-900 flex items-center gap-1">
+              Maya Krishnan <i class="fa-solid fa-circle-check text-indigo-600 text-xs"></i>
+            </h3>
+            <p class="text-xs text-slate-400">@maya • federated</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-slate-100 text-center">
+          <div><span class="font-extrabold text-sm">12.4k</span><p class="text-[10px] text-slate-400">Followers</p></div>
+          <div><span class="font-extrabold text-sm">890</span><p class="text-[10px] text-slate-400">Following</p></div>
+          <div><span class="font-extrabold text-sm">3.1k</span><p class="text-[10px] text-slate-400">Posts</p></div>
+        </div>
+      </div>
+
+      <nav class="bg-white p-3 rounded-2xl border border-slate-200 shadow-sm space-y-1">
+        <a href="02-feed.html" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 font-medium text-xs">
+          <i class="fa-solid fa-house text-sm w-4"></i><span>Feed</span>
+        </a>
+        <a href="04-chat.html" class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 font-medium text-xs">
+          <div class="flex items-center gap-3"><i class="fa-regular fa-comments text-sm w-4"></i><span>Messages</span></div>
+          <span class="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-600 text-white">4</span>
+        </a>
+        <a href="03-profile.html" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-indigo-600 text-white font-semibold text-xs shadow-md shadow-indigo-600/20">
+          <i class="fa-regular fa-user text-sm w-4"></i><span>Profile</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- CENTER PROFILE CONTENT -->
+    <main class="lg:col-span-6 space-y-4">
+      
+      <!-- Profile Header Card -->
+      <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+        
+        <!-- Cover Photo (RustFS Storage) -->
+        <div class="h-48 relative overflow-hidden bg-slate-800">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1000&auto=format&fit=crop&q=80" alt="Cover" class="w-full h-full object-cover">
+          <span class="absolute bottom-3 right-3 px-2 py-1 bg-black/60 backdrop-blur rounded text-[10px] text-white font-mono flex items-center gap-1.5">
+            <i class="fa-solid fa-cloud text-indigo-400"></i> Cover stored on RustFS
+          </span>
+        </div>
+
+        <!-- Profile Details Body -->
+        <div class="px-6 pb-6 pt-0 relative">
+          <!-- Avatar Overlay -->
+          <div class="flex justify-between items-end -mt-12 mb-4">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80" alt="Maya" class="w-24 h-24 rounded-2xl object-cover ring-4 ring-white shadow-md">
+            <div class="flex gap-2">
+              <a href="04-chat.html" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold rounded-xl text-xs flex items-center gap-1.5">
+                <i class="fa-regular fa-comment"></i> Message
+              </a>
+              <button class="px-3.5 py-1.5 bg-indigo-50 text-indigo-700 font-semibold rounded-xl text-xs flex items-center gap-1.5">
+                <i class="fa-solid fa-bell"></i> Subscribed
+              </button>
+            </div>
+          </div>
+
+          <h2 class="text-xl font-bold text-slate-900 flex items-center gap-1.5">
+            Maya Krishnan <i class="fa-solid fa-circle-check text-indigo-600 text-sm"></i>
+          </h2>
+          <p class="text-xs text-slate-400">@maya • relaymesh.io</p>
+
+          <p class="text-xs text-slate-700 mt-3 leading-relaxed">
+            Distributed systems engineer. Building open relays & photography enthusiast. Previously @planet-scale. Posts federate everywhere.
+          </p>
+
+          <!-- Metadata Badges -->
+          <div class="flex flex-wrap gap-4 text-xs text-slate-400 mt-4 pt-3 border-t border-slate-100">
+            <span><i class="fa-solid fa-location-dot mr-1 text-slate-500"></i> Bengaluru, IN</span>
+            <span><i class="fa-solid fa-link mr-1 text-slate-500"></i> maya.build</span>
+            <span><i class="fa-regular fa-calendar mr-1 text-slate-500"></i> Joined March 2023</span>
+            <span><i class="fa-solid fa-server mr-1 text-slate-500"></i> Home relay: ap-south-1</span>
+          </div>
+
+          <!-- Social Count Badges -->
+          <div class="flex gap-4 text-xs mt-3">
+            <span><strong class="text-slate-900 font-extrabold">890</strong> <span class="text-slate-400">Following</span></span>
+            <span><strong class="text-slate-900 font-extrabold">12.4k</strong> <span class="text-slate-400">Followers</span></span>
+            <span><strong class="text-slate-900 font-extrabold">3.1k</strong> <span class="text-slate-400">Posts</span></span>
+          </div>
+        </div>
+
+        <!-- Profile Tabs -->
+        <div class="flex border-t border-slate-200 px-6 text-xs font-semibold">
+          <button class="py-3 px-4 text-indigo-600 border-b-2 border-indigo-600 font-bold">Posts</button>
+          <button class="py-3 px-4 text-slate-400 hover:text-slate-700">Followers</button>
+          <button class="py-3 px-4 text-slate-400 hover:text-slate-700">Following</button>
+          <button class="py-3 px-4 text-slate-400 hover:text-slate-700">Reactions</button>
+        </div>
+
+      </div>
+
+      <!-- User Posts Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+          <img src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=400&auto=format&fit=crop&q=80" class="w-full h-36 object-cover">
+          <div class="p-3">
+            <h4 class="font-bold text-xs text-slate-900 truncate">Night deploys hit different...</h4>
+            <p class="text-[10px] text-slate-400 mt-1">412 likes • 38 replies</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+          <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&auto=format&fit=crop&q=80" class="w-full h-36 object-cover">
+          <div class="p-3">
+            <h4 class="font-bold text-xs text-slate-900 truncate">Relay v2 benchmarks live</h4>
+            <p class="text-[10px] text-slate-400 mt-1">1.1k likes • 204 replies</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+          <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&auto=format&fit=crop&q=80" class="w-full h-36 object-cover">
+          <div class="p-3">
+            <h4 class="font-bold text-xs text-slate-900 truncate">Offline weekend in forest</h4>
+            <p class="text-[10px] text-slate-400 mt-1">689 likes • 51 replies</p>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- RIGHT WIDGETS -->
+    <aside class="lg:col-span-3 space-y-4">
+      <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+        <h3 class="font-bold text-xs text-slate-900 mb-3">Smart Suggestions</h3>
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80" class="w-8 h-8 rounded-full object-cover">
+              <div><h4 class="font-bold text-xs">Alice Chen</h4><p class="text-[10px] text-slate-400">Mutual followers: 4</p></div>
+            </div>
+            <button class="px-2.5 py-1 bg-slate-100 hover:bg-indigo-600 hover:text-white rounded-lg text-xs font-semibold">Follow</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+</body>
+</html>
