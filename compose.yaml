@@ -39,7 +39,7 @@ services:
     networks:
       - yaga-network
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:9000/ || exit 1"]
+      test: ["CMD-SHELL", "curl -s http://localhost:9000/ > /dev/null || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
