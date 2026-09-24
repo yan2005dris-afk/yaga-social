@@ -1,6 +1,6 @@
 services:
   yaga-neo4j:
-    image: neo4j:5.26-community
+    image: docker.io/library/neo4j:5.26-community
     container_name: yaga-neo4j
     restart: unless-stopped
     ports:
@@ -25,7 +25,7 @@ services:
       start_period: 20s
 
   yaga-rustfs:
-    image: rustfs/rustfs:latest
+    image: docker.io/rustfs/rustfs:latest
     container_name: yaga-rustfs
     restart: unless-stopped
     ports:
