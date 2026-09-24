@@ -12,3 +12,4 @@ dist/
 *.log
 __pycache__/
 *.pyc
+generate_docx.py
