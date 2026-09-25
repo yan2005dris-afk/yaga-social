@@ -5,6 +5,7 @@ import { FeedPage } from "./pages/FeedPage";
 import { ProfilePage } from "./pages/ProfilePage";
 import { ChatPage } from "./pages/ChatPage";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import { MainLayout } from "./components/layout";
 
 function App() {
   return (
@@ -15,13 +16,15 @@ function App() {
           <Route path="/register" element={<AuthPage />} />
 
           <Route element={<ProtectedRoute />}>
-            <Route path="/feed" element={<FeedPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/profile/:username" element={<ProfilePage />} />
-            <Route path="/chat" element={<ChatPage />} />
-            <Route path="/explore" element={<FeedPage />} />
-            <Route path="/notifications" element={<FeedPage />} />
-            <Route path="/" element={<Navigate to="/feed" replace />} />
+            <Route element={<MainLayout />}>
+              <Route path="/feed" element={<FeedPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/profile/:username" element={<ProfilePage />} />
+              <Route path="/chat" element={<ChatPage />} />
+              <Route path="/explore" element={<FeedPage />} />
+              <Route path="/notifications" element={<FeedPage />} />
+              <Route path="/" element={<Navigate to="/feed" replace />} />
+            </Route>
           </Route>
 
           <Route path="*" element={<Navigate to="/login" replace />} />

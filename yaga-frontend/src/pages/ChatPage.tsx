@@ -2,7 +2,6 @@ import { useState, type FC } from "react";
 import type { ChatConversation, ChatMessage } from "../types/chat";
 import type { UserProfileSummary } from "../types/domain";
 import { useAuth } from "../hooks/useAuth";
-import { AppNavbar } from "../components/layout";
 import { ConversationList, ChatWindow } from "../components/chat";
 
 const MOCK_PARTICIPANTS: readonly UserProfileSummary[] = [
@@ -143,38 +142,33 @@ export const ChatPage: FC = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col overflow-hidden bg-slate-100 text-slate-800">
-      <AppNavbar
-        showSearch={false}
-        statusVariant="websocket"
-        statusText="WebSocket connected • 38ms"
-      />
+    <div
+      className="grid grid-cols-1 lg:grid-cols-12 gap-6 w-full h-[calc(100vh-10rem)] min-h-[500px]"
+      data-testid="chat-page"
+    >
+      <div className="lg:col-span-5 h-full overflow-hidden">
+        <ConversationList
+          conversations={conversations}
+          activeConversationId={activeConvId}
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
+          onSelectConversation={setActiveConvId}
+        />
+      </div>
 
-      <div className="flex-1 max-w-7xl w-full mx-auto p-4 lg:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 overflow-hidden">
-        <div className="lg:col-span-4 h-full overflow-hidden">
-          <ConversationList
-            conversations={conversations}
-            activeConversationId={activeConvId}
-            searchQuery={searchQuery}
-            onSearchChange={setSearchQuery}
-            onSelectConversation={setActiveConvId}
+      <div className="lg:col-span-7 h-full overflow-hidden">
+        {activeConversation ? (
+          <ChatWindow
+            conversation={activeConversation}
+            currentUserId={currentUserId}
+            messages={messages}
+            onSendMessage={handleSendMessage}
           />
-        </div>
-
-        <div className="lg:col-span-8 h-full overflow-hidden">
-          {activeConversation ? (
-            <ChatWindow
-              conversation={activeConversation}
-              currentUserId={currentUserId}
-              messages={messages}
-              onSendMessage={handleSendMessage}
-            />
-          ) : (
-            <div className="flex items-center justify-center h-full bg-white rounded-2xl border border-slate-200 text-slate-400 text-sm">
-              Select a conversation to start messaging
-            </div>
-          )}
-        </div>
+        ) : (
+          <div className="flex items-center justify-center h-full bg-white rounded-2xl border border-slate-200 text-slate-400 text-sm">
+            Select a conversation to start messaging
+          </div>
+        )}
       </div>
     </div>
   );

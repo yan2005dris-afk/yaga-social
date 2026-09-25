@@ -15,11 +15,10 @@ const renderFeedPage = () => {
 };
 
 describe("FeedPage Component", () => {
-  it("renders navbar, sidebars, post composer and feed timeline", () => {
+  it("renders post composer and feed timeline", () => {
     renderFeedPage();
 
-    expect(screen.getByTestId("app-navbar")).toBeInTheDocument();
-    expect(screen.getByTestId("sidebar-nav")).toBeInTheDocument();
+    expect(screen.getByTestId("feed-page")).toBeInTheDocument();
     expect(screen.getByTestId("create-post-card")).toBeInTheDocument();
     expect(screen.getByText("For you (Graph Feed)")).toBeInTheDocument();
     expect(screen.getByText("Jonas Weber")).toBeInTheDocument();

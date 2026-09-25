@@ -17,10 +17,10 @@ const renderChatPage = () => {
 };
 
 describe("ChatPage Component", () => {
-  it("renders navbar with WebSocket indicator, conversation list, and active chat", () => {
+  it("renders conversation list and active chat window", () => {
     renderChatPage();
 
-    expect(screen.getByText("WebSocket connected • 38ms")).toBeInTheDocument();
+    expect(screen.getByTestId("chat-page")).toBeInTheDocument();
     expect(screen.getByTestId("conversation-list")).toBeInTheDocument();
     expect(screen.getByTestId("chat-window")).toBeInTheDocument();
     expect(screen.getAllByText("Alice Chen").length).toBeGreaterThanOrEqual(1);
