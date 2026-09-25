@@ -1,14 +1,16 @@
-package com.yaga.auth.infrastructure.out.security;
+package com.yaga.auth.infrastructure.security;
 
-import com.yaga.auth.application.port.out.TokenProviderPort;
+import com.yaga.auth.application.port.TokenProviderPort;
 import com.yaga.auth.domain.exception.InvalidTokenException;
 import com.yaga.auth.domain.model.AuthTokens;
 import com.yaga.auth.domain.model.User;
 import io.smallrye.jwt.auth.principal.JWTParser;
 import io.smallrye.jwt.auth.principal.ParseException;
 import io.smallrye.jwt.build.Jwt;
+import io.smallrye.jwt.util.KeyUtils;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import java.security.PrivateKey;
 import java.time.Duration;
 import java.util.Set;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
@@ -22,6 +24,7 @@ public class SmallRyeJwtTokenAdapter implements TokenProviderPort {
 
   private final String issuer;
   private final JWTParser jwtParser;
+  private final PrivateKey signingKey;
 
   @Inject
   public SmallRyeJwtTokenAdapter(
@@ -29,9 +32,26 @@ public class SmallRyeJwtTokenAdapter implements TokenProviderPort {
               name = "mp.jwt.verify.issuer",
               defaultValue = "https://yaga-social.com/issuer")
           String issuer,
+      @ConfigProperty(name = "smallrye.jwt.sign.key.location", defaultValue = "jwt/privateKey.pem")
+          String privateKeyLocation,
       JWTParser jwtParser) {
     this.issuer = issuer;
     this.jwtParser = jwtParser;
+    this.signingKey = loadPrivateKey(privateKeyLocation);
+  }
+
+  private PrivateKey loadPrivateKey(String location) {
+    try {
+      return KeyUtils.readPrivateKey(location);
+    } catch (Exception e) {
+      try {
+        String altLocation = location.startsWith("/") ? location.substring(1) : "/" + location;
+        return KeyUtils.readPrivateKey(altLocation);
+      } catch (Exception ex) {
+        throw new IllegalStateException(
+            "Failed to load JWT signing private key from: " + location, ex);
+      }
+    }
   }
 
   @Override
@@ -45,7 +65,7 @@ public class SmallRyeJwtTokenAdapter implements TokenProviderPort {
             .claim("fullName", user.fullName())
             .claim("type", "access")
             .expiresIn(ACCESS_TOKEN_EXPIRATION)
-            .sign();
+            .sign(signingKey);
 
     String refreshToken =
         Jwt.issuer(issuer)
@@ -53,7 +73,7 @@ public class SmallRyeJwtTokenAdapter implements TokenProviderPort {
             .subject(user.id())
             .claim("type", "refresh")
             .expiresIn(REFRESH_TOKEN_EXPIRATION)
-            .sign();
+            .sign(signingKey);
 
     return new AuthTokens(accessToken, refreshToken, ACCESS_TOKEN_EXPIRATION.toSeconds());
   }

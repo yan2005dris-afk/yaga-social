@@ -1,6 +1,6 @@
-package com.yaga.auth.infrastructure.out.crypto;
+package com.yaga.auth.infrastructure.crypto;
 
-import com.yaga.auth.application.port.out.PasswordHasherPort;
+import com.yaga.auth.application.port.PasswordHasherPort;
 import jakarta.enterprise.context.ApplicationScoped;
 import org.mindrot.jbcrypt.BCrypt;
 

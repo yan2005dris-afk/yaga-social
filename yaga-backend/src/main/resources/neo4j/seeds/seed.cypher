@@ -11,8 +11,10 @@ ON CREATE SET
   u1.fullName = "Yandris Tech",
   u1.bio = "Arquitecto de Software & Tech Lead en YAGA Social",
   u1.avatarUrl = "http://localhost:9000/social-media-assets/avatars/yandris.png",
-  u1.passwordHash = "$2a$10$wN3YtK8a3d5jH9k3eP8f7u5.7H4m8K2g9T1y4M7v3Q6b5Z2x8L1eC",
-  u1.createdAt = datetime("2026-09-24T12:00:00Z");
+  u1.passwordHash = "$2a$12$vx53idU5DJsd81SkMYa2..3wOz78V6FE8iFlIGpfQRAi2a2HaT1sG",
+  u1.createdAt = datetime("2026-09-24T12:00:00Z")
+ON MATCH SET
+  u1.passwordHash = "$2a$12$vx53idU5DJsd81SkMYa2..3wOz78V6FE8iFlIGpfQRAi2a2HaT1sG";
 
 MERGE (u2:Usuario {id: "usr_gino_02"})
 ON CREATE SET 
@@ -21,8 +23,10 @@ ON CREATE SET
   u2.fullName = "Gino Backend",
   u2.bio = "Especialista en Microservicios, RustFS S3 y Web Push",
   u2.avatarUrl = "http://localhost:9000/social-media-assets/avatars/gino.png",
-  u2.passwordHash = "$2a$10$wN3YtK8a3d5jH9k3eP8f7u5.7H4m8K2g9T1y4M7v3Q6b5Z2x8L1eC",
-  u2.createdAt = datetime("2026-09-24T12:05:00Z");
+  u2.passwordHash = "$2a$12$vx53idU5DJsd81SkMYa2..3wOz78V6FE8iFlIGpfQRAi2a2HaT1sG",
+  u2.createdAt = datetime("2026-09-24T12:05:00Z")
+ON MATCH SET
+  u2.passwordHash = "$2a$12$vx53idU5DJsd81SkMYa2..3wOz78V6FE8iFlIGpfQRAi2a2HaT1sG";
 
 MERGE (u3:Usuario {id: "usr_andy_03"})
 ON CREATE SET 
@@ -31,8 +35,10 @@ ON CREATE SET
   u3.fullName = "Andy Graph",
   u3.bio = "Entusiasta de Neo4j, algoritmos de grafos y WebSockets",
   u3.avatarUrl = "http://localhost:9000/social-media-assets/avatars/andy.png",
-  u3.passwordHash = "$2a$10$wN3YtK8a3d5jH9k3eP8f7u5.7H4m8K2g9T1y4M7v3Q6b5Z2x8L1eC",
-  u3.createdAt = datetime("2026-09-24T12:10:00Z");
+  u3.passwordHash = "$2a$12$vx53idU5DJsd81SkMYa2..3wOz78V6FE8iFlIGpfQRAi2a2HaT1sG",
+  u3.createdAt = datetime("2026-09-24T12:10:00Z")
+ON MATCH SET
+  u3.passwordHash = "$2a$12$vx53idU5DJsd81SkMYa2..3wOz78V6FE8iFlIGpfQRAi2a2HaT1sG";
 
 MERGE (u4:Usuario {id: "usr_allison_04"})
 ON CREATE SET 
@@ -41,8 +47,10 @@ ON CREATE SET
   u4.fullName = "Allison Frontend",
   u4.bio = "Desarrolladora React, Vite, Tailwind CSS y UI/UX",
   u4.avatarUrl = "http://localhost:9000/social-media-assets/avatars/allison.png",
-  u4.passwordHash = "$2a$10$wN3YtK8a3d5jH9k3eP8f7u5.7H4m8K2g9T1y4M7v3Q6b5Z2x8L1eC",
-  u4.createdAt = datetime("2026-09-24T12:15:00Z");
+  u4.passwordHash = "$2a$12$vx53idU5DJsd81SkMYa2..3wOz78V6FE8iFlIGpfQRAi2a2HaT1sG",
+  u4.createdAt = datetime("2026-09-24T12:15:00Z")
+ON MATCH SET
+  u4.passwordHash = "$2a$12$vx53idU5DJsd81SkMYa2..3wOz78V6FE8iFlIGpfQRAi2a2HaT1sG";
 
 // 2. Relaciones de Seguimiento ([:SIGUE])
 MATCH (u1:Usuario {id: "usr_yandris_01"}), (u2:Usuario {id: "usr_gino_02"})

@@ -14,3 +14,6 @@ __pycache__/
 *.pyc
 generate_docx.py
 coverage/
+*.pem
+*.key
+jwt/

@@ -5,17 +5,17 @@ import com.yaga.auth.application.dto.LoginRequest;
 import com.yaga.auth.application.dto.RefreshTokenRequest;
 import com.yaga.auth.application.dto.RegisterRequest;
 import com.yaga.auth.application.dto.UserDto;
-import com.yaga.auth.application.port.in.AuthenticateUserUseCase;
-import com.yaga.auth.application.port.in.RefreshTokenUseCase;
-import com.yaga.auth.application.port.in.RegisterUserUseCase;
-import com.yaga.auth.application.port.out.PasswordHasherPort;
-import com.yaga.auth.application.port.out.TokenProviderPort;
-import com.yaga.auth.application.port.out.UserRepositoryPort;
+import com.yaga.auth.application.port.PasswordHasherPort;
+import com.yaga.auth.application.port.TokenProviderPort;
+import com.yaga.auth.application.usecase.AuthenticateUserUseCase;
+import com.yaga.auth.application.usecase.RefreshTokenUseCase;
+import com.yaga.auth.application.usecase.RegisterUserUseCase;
 import com.yaga.auth.domain.exception.InvalidCredentialsException;
 import com.yaga.auth.domain.exception.UserAlreadyExistsException;
 import com.yaga.auth.domain.exception.UserNotFoundException;
 import com.yaga.auth.domain.model.AuthTokens;
 import com.yaga.auth.domain.model.User;
+import com.yaga.auth.domain.repository.UserRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import java.util.Objects;
@@ -25,13 +25,13 @@ import java.util.UUID;
 public class AuthService
     implements RegisterUserUseCase, AuthenticateUserUseCase, RefreshTokenUseCase {
 
-  private final UserRepositoryPort userRepository;
+  private final UserRepository userRepository;
   private final PasswordHasherPort passwordHasher;
   private final TokenProviderPort tokenProvider;
 
   @Inject
   public AuthService(
-      UserRepositoryPort userRepository,
+      UserRepository userRepository,
       PasswordHasherPort passwordHasher,
       TokenProviderPort tokenProvider) {
     this.userRepository = Objects.requireNonNull(userRepository, "userRepository must not be null");

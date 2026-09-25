@@ -1,4 +1,4 @@
-package com.yaga.auth.infrastructure.out.crypto;
+package com.yaga.auth.infrastructure.crypto;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

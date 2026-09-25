@@ -1,4 +1,4 @@
-package com.yaga.auth.application.port.out;
+package com.yaga.auth.application.port;
 
 import com.yaga.auth.domain.model.AuthTokens;
 import com.yaga.auth.domain.model.User;
