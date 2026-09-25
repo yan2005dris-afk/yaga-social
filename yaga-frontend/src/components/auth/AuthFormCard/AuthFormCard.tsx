@@ -23,11 +23,12 @@ export const AuthFormCard: FC<AuthFormCardProps> = ({
   const [showPassword, setShowPassword] = useState(false);
 
   const [formData, setFormData] = useState({
-    fullName: "Maya Krishnan",
-    username: "maya",
-    email: "maya@relaymesh.io",
-    password: "SuperSecretPassword123!",
-    bio: "Building in the open. Federated tech + photography.",
+    fullName: "",
+    username: "",
+    email: "",
+    usernameOrEmail: "",
+    password: "",
+    bio: "",
   });
 
   const isSignUp = mode === "signup";
@@ -44,7 +45,8 @@ export const AuthFormCard: FC<AuthFormCardProps> = ({
       });
     } else {
       await onSignIn({
-        usernameOrEmail: formData.username || formData.email,
+        usernameOrEmail:
+          formData.usernameOrEmail || formData.username || formData.email,
         password: formData.password,
       });
     }
@@ -75,40 +77,60 @@ export const AuthFormCard: FC<AuthFormCardProps> = ({
       )}
 
       <form onSubmit={handleSubmit} className={styles.form}>
-        {isSignUp && (
+        {isSignUp ? (
+          <>
+            <Input
+              label="Full Name"
+              placeholder="Your full name"
+              value={formData.fullName}
+              onChange={(e) =>
+                setFormData({ ...formData, fullName: e.target.value })
+              }
+              required
+              data-testid="input-fullname"
+            />
+
+            <Input
+              label="Username"
+              placeholder="username"
+              value={formData.username}
+              onChange={(e) =>
+                setFormData({ ...formData, username: e.target.value })
+              }
+              leftIcon={<span className="text-slate-400 font-semibold">@</span>}
+              required
+              data-testid="input-username"
+            />
+
+            <Input
+              label="Email"
+              type="email"
+              placeholder="name@domain.com"
+              value={formData.email}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
+              required
+              data-testid="input-email"
+            />
+          </>
+        ) : (
           <Input
-            label="Full Name"
-            placeholder="Your full name"
-            value={formData.fullName}
+            label="Username or Email"
+            placeholder="username or email"
+            value={formData.usernameOrEmail || formData.username}
             onChange={(e) =>
-              setFormData({ ...formData, fullName: e.target.value })
+              setFormData({
+                ...formData,
+                usernameOrEmail: e.target.value,
+                username: e.target.value,
+              })
             }
+            leftIcon={<span className="text-slate-400 font-semibold">@</span>}
             required
-            data-testid="input-fullname"
+            data-testid="input-username"
           />
         )}
-
-        <Input
-          label="Username"
-          placeholder="username"
-          value={formData.username}
-          onChange={(e) =>
-            setFormData({ ...formData, username: e.target.value })
-          }
-          leftIcon={<span className="text-slate-400 font-semibold">@</span>}
-          required
-          data-testid="input-username"
-        />
-
-        <Input
-          label="Email"
-          type="email"
-          placeholder="name@domain.com"
-          value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          required
-          data-testid="input-email"
-        />
 
         <Input
           label="Password"
