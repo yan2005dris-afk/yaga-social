@@ -1,0 +1,50 @@
+name: E2E & Compose Integration Pipeline
+
+on:
+  push:
+    branches: [develop, main]
+    paths:
+      - 'compose.yaml'
+      - '.env.example'
+      - 'yaga-backend/**'
+      - 'yaga-frontend/**'
+      - '.github/workflows/e2e-compose.yml'
+  pull_request:
+    branches: [develop, main]
+    paths:
+      - 'compose.yaml'
+      - '.env.example'
+      - 'yaga-backend/**'
+      - 'yaga-frontend/**'
+      - '.github/workflows/e2e-compose.yml'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compose-e2e-integration:
+    name: Compose Cluster & Healthchecks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create .env from template
+        run: cp .env.example .env
+
+      - name: Build and Start Compose Stack
+        run: docker compose up -d --build
+
+      - name: Verify Container Health Status & Smoke Tests
+        run: |
+          echo "Waiting for services to become healthy..."
+          timeout 120 bash -c 'until docker compose ps | grep -q "healthy"; do sleep 5; done'
+          sleep 10
+          docker compose ps
+          curl -f http://localhost:8080/hello || exit 1
+          curl -f http://localhost:3000 || exit 1
+          echo "All services are up and healthy!"
+
+      - name: Teardown Cluster
+        if: always()
+        run: docker compose down -v
