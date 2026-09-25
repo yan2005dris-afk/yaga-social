@@ -9,8 +9,6 @@ describe("App Component", () => {
     expect(
       screen.getAllByRole("button", { name: /sign in/i }).length,
     ).toBeGreaterThanOrEqual(1);
-    expect(
-      screen.getByRole("button", { name: /^sign up$/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: /^sign up$/i })).toBeInTheDocument();
   });
 });

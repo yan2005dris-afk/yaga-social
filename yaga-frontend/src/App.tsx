@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { AuthPage } from "./pages/AuthPage";
 import { FeedPage } from "./pages/FeedPage";
+import { ProfilePage } from "./pages/ProfilePage";
+import { ChatPage } from "./pages/ChatPage";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 
 function App() {
@@ -14,6 +16,11 @@ function App() {
 
           <Route element={<ProtectedRoute />}>
             <Route path="/feed" element={<FeedPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/profile/:username" element={<ProfilePage />} />
+            <Route path="/chat" element={<ChatPage />} />
+            <Route path="/explore" element={<FeedPage />} />
+            <Route path="/notifications" element={<FeedPage />} />
             <Route path="/" element={<Navigate to="/feed" replace />} />
           </Route>
 

@@ -1,0 +1,81 @@
+.item {
+  padding: 0.875rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.item:hover {
+  background-color: #f8fafc;
+}
+
+.itemUnread {
+  background-color: #faf5ff;
+}
+
+.avatarWrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.typeBadge {
+  position: absolute;
+  bottom: -0.25rem;
+  right: -0.25rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+}
+
+.badgeLike {
+  background-color: #f43f5e;
+}
+
+.badgeBoost {
+  background-color: #4f46e5;
+}
+
+.badgeFollow {
+  background-color: #10b981;
+}
+
+.badgeChat {
+  background-color: #f59e0b;
+}
+
+.contentCol {
+  flex: 1;
+  min-width: 0;
+}
+
+.message {
+  font-size: 0.75rem;
+  color: #1e293b;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.actorName {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.targetSnippet {
+  color: #64748b;
+}
+
+.timestamp {
+  font-size: 0.625rem;
+  color: #94a3b8;
+  margin-top: 0.25rem;
+  display: block;
+  font-weight: 500;
+}

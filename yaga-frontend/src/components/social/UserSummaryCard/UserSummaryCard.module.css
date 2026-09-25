@@ -1,0 +1,69 @@
+.card {
+  background-color: #ffffff;
+  padding: 1.25rem;
+  border-radius: 1rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.profileHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nameRow {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.fullName {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #0f172a;
+  text-decoration: none;
+}
+
+.fullName:hover {
+  color: #4f46e5;
+}
+
+.verifiedIcon {
+  width: 0.875rem;
+  height: 0.875rem;
+  color: #4f46e5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.handleText {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-top: 0.125rem;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f1f5f9;
+  text-align: center;
+}
+
+.statValue {
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: #0f172a;
+  display: block;
+}
+
+.statLabel {
+  font-size: 0.625rem;
+  color: #94a3b8;
+  font-weight: 500;
+  margin-top: 0.125rem;
+}
