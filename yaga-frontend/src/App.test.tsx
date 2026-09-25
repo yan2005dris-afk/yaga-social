@@ -3,16 +3,14 @@ import { describe, expect, it } from "vitest";
 import App from "./App";
 
 describe("App Component", () => {
-  it("renders Vite and React logos", () => {
+  it("renders AuthPage by default when unauthenticated", () => {
     render(<App />);
-    expect(screen.getByAltText(/Vite logo/i)).toBeInTheDocument();
-    expect(screen.getByAltText(/React logo/i)).toBeInTheDocument();
-  });
-
-  it("renders initial count button", () => {
-    render(<App />);
+    expect(screen.getByText(/Welcome to Relaymesh/i)).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: /count is 0/i }),
+      screen.getAllByRole("button", { name: /sign in/i }).length,
+    ).toBeGreaterThanOrEqual(1);
+    expect(
+      screen.getByRole("button", { name: /^sign up$/i }),
     ).toBeInTheDocument();
   });
 });
