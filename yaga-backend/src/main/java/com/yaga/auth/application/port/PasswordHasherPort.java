@@ -1,4 +1,4 @@
-package com.yaga.auth.application.port.out;
+package com.yaga.auth.application.port;
 
 public interface PasswordHasherPort {
   String hash(String rawPassword);

@@ -1,6 +1,6 @@
-package com.yaga.auth.infrastructure.out.security;
+package com.yaga.auth.infrastructure.security;
 
-import com.yaga.auth.application.port.out.TokenProviderPort;
+import com.yaga.auth.application.port.TokenProviderPort;
 import com.yaga.auth.domain.exception.InvalidTokenException;
 import com.yaga.auth.domain.model.AuthTokens;
 import com.yaga.auth.domain.model.User;
