@@ -11,7 +11,7 @@ ON CREATE SET
   u1.fullName = "Yandris Tech",
   u1.bio = "Arquitecto de Software & Tech Lead en YAGA Social",
   u1.avatarUrl = "http://localhost:9000/social-media-assets/avatars/yandris.png",
-  u1.passwordHash = "$2a$10$wN3YtK8a3d5jH9k3eP8f7u5.7H4m8K2g9T1y4M7v3Q6b5Z2x8L1eC", // Password123!
+  u1.passwordHash = "$2a$10$wN3YtK8a3d5jH9k3eP8f7u5.7H4m8K2g9T1y4M7v3Q6b5Z2x8L1eC",
   u1.createdAt = datetime("2026-09-24T12:00:00Z");
 
 MERGE (u2:Usuario {id: "usr_gino_02"})
@@ -45,20 +45,25 @@ ON CREATE SET
   u4.createdAt = datetime("2026-09-24T12:15:00Z");
 
 // 2. Relaciones de Seguimiento ([:SIGUE])
-MERGE (u1)-[r1:SIGUE]->(u2)
-ON CREATE SET r1.createdAt = datetime("2026-09-24T13:00:00Z");
+MATCH (u1:Usuario {id: "usr_yandris_01"}), (u2:Usuario {id: "usr_gino_02"})
+MERGE (u1)-[r:SIGUE]->(u2)
+ON CREATE SET r.createdAt = datetime("2026-09-24T13:00:00Z");
 
-MERGE (u1)-[r2:SIGUE]->(u3)
-ON CREATE SET r2.createdAt = datetime("2026-09-24T13:05:00Z");
+MATCH (u1:Usuario {id: "usr_yandris_01"}), (u3:Usuario {id: "usr_andy_03"})
+MERGE (u1)-[r:SIGUE]->(u3)
+ON CREATE SET r.createdAt = datetime("2026-09-24T13:05:00Z");
 
-MERGE (u2)-[r3:SIGUE]->(u4)
-ON CREATE SET r3.createdAt = datetime("2026-09-24T13:10:00Z");
+MATCH (u2:Usuario {id: "usr_gino_02"}), (u4:Usuario {id: "usr_allison_04"})
+MERGE (u2)-[r:SIGUE]->(u4)
+ON CREATE SET r.createdAt = datetime("2026-09-24T13:10:00Z");
 
-MERGE (u3)-[r4:SIGUE]->(u4)
-ON CREATE SET r4.createdAt = datetime("2026-09-24T13:15:00Z");
+MATCH (u3:Usuario {id: "usr_andy_03"}), (u4:Usuario {id: "usr_allison_04"})
+MERGE (u3)-[r:SIGUE]->(u4)
+ON CREATE SET r.createdAt = datetime("2026-09-24T13:15:00Z");
 
-MERGE (u4)-[r5:SIGUE]->(u1)
-ON CREATE SET r5.createdAt = datetime("2026-09-24T13:20:00Z");
+MATCH (u4:Usuario {id: "usr_allison_04"}), (u1:Usuario {id: "usr_yandris_01"})
+MERGE (u4)-[r:SIGUE]->(u1)
+ON CREATE SET r.createdAt = datetime("2026-09-24T13:20:00Z");
 
 // 3. Publicaciones de Prueba ([:PUBLICA])
 MERGE (p1:Post {id: "pst_001"})
@@ -68,6 +73,7 @@ ON CREATE SET
   p1.mediaType = "image/png",
   p1.createdAt = datetime("2026-09-24T14:00:00Z");
 
+MATCH (u1:Usuario {id: "usr_yandris_01"}), (p1:Post {id: "pst_001"})
 MERGE (u1)-[pub1:PUBLICA]->(p1)
 ON CREATE SET pub1.createdAt = datetime("2026-09-24T14:00:00Z");
 
@@ -78,19 +84,24 @@ ON CREATE SET
   p2.mediaType = null,
   p2.createdAt = datetime("2026-09-24T14:30:00Z");
 
+MATCH (u2:Usuario {id: "usr_gino_02"}), (p2:Post {id: "pst_002"})
 MERGE (u2)-[pub2:PUBLICA]->(p2)
 ON CREATE SET pub2.createdAt = datetime("2026-09-24T14:30:00Z");
 
 // 4. Reacciones a Publicaciones ([:REACCIONA])
+MATCH (u2:Usuario {id: "usr_gino_02"}), (p1:Post {id: "pst_001"})
 MERGE (u2)-[reac1:REACCIONA]->(p1)
 ON CREATE SET reac1.tipo = "LIKE", reac1.createdAt = datetime("2026-09-24T14:05:00Z");
 
+MATCH (u3:Usuario {id: "usr_andy_03"}), (p1:Post {id: "pst_001"})
 MERGE (u3)-[reac2:REACCIONA]->(p1)
 ON CREATE SET reac2.tipo = "LOVE", reac2.createdAt = datetime("2026-09-24T14:10:00Z");
 
+MATCH (u4:Usuario {id: "usr_allison_04"}), (p1:Post {id: "pst_001"})
 MERGE (u4)-[reac3:REACCIONA]->(p1)
 ON CREATE SET reac3.tipo = "CELEBRATE", reac3.createdAt = datetime("2026-09-24T14:15:00Z");
 
+MATCH (u1:Usuario {id: "usr_yandris_01"}), (p2:Post {id: "pst_002"})
 MERGE (u1)-[reac4:REACCIONA]->(p2)
 ON CREATE SET reac4.tipo = "LIKE", reac4.createdAt = datetime("2026-09-24T14:35:00Z");
 
@@ -101,6 +112,7 @@ ON CREATE SET
   m1.read = true,
   m1.createdAt = datetime("2026-09-24T15:00:00Z");
 
+MATCH (u1:Usuario {id: "usr_yandris_01"}), (m1:Mensaje {id: "msg_001"}), (u3:Usuario {id: "usr_andy_03"})
 MERGE (u1)-[env1:ENVIA]->(m1)
 ON CREATE SET env1.createdAt = datetime("2026-09-24T15:00:00Z");
 
@@ -112,6 +124,7 @@ ON CREATE SET
   m2.read = true,
   m2.createdAt = datetime("2026-09-24T15:02:00Z");
 
+MATCH (u3:Usuario {id: "usr_andy_03"}), (m2:Mensaje {id: "msg_002"}), (u1:Usuario {id: "usr_yandris_01"})
 MERGE (u3)-[env2:ENVIA]->(m2)
 ON CREATE SET env2.createdAt = datetime("2026-09-24T15:02:00Z");
 
