@@ -32,7 +32,7 @@ public class SmallRyeJwtTokenAdapter implements TokenProviderPort {
               name = "mp.jwt.verify.issuer",
               defaultValue = "https://yaga-social.com/issuer")
           String issuer,
-      @ConfigProperty(name = "smallrye.jwt.sign.key.location", defaultValue = "/jwt/privateKey.pem")
+      @ConfigProperty(name = "smallrye.jwt.sign.key.location", defaultValue = "jwt/privateKey.pem")
           String privateKeyLocation,
       JWTParser jwtParser) {
     this.issuer = issuer;
