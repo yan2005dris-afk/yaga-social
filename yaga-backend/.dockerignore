@@ -1,5 +1,10 @@
 target/
-!target/quarkus-app/
-.idea/
+.git
+.gitignore
+.idea
 *.iml
-.vscode/
+.vscode
+.env
+.env.*
+!.env.example
+*.log
