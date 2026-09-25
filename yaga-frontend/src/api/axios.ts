@@ -5,6 +5,7 @@ const API_BASE_URL =
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,
+  withCredentials: true,
   headers: {
     "Content-Type": "application/json",
   },
@@ -48,7 +49,8 @@ apiClient.interceptors.response.use(
       !originalRequest._retry &&
       !originalRequest.url?.includes("/api/auth/login") &&
       !originalRequest.url?.includes("/api/auth/register") &&
-      !originalRequest.url?.includes("/api/auth/refresh")
+      !originalRequest.url?.includes("/api/auth/refresh") &&
+      !originalRequest.url?.includes("/api/auth/logout")
     ) {
       if (isRefreshing) {
         return new Promise((resolve, reject) => {
@@ -64,25 +66,15 @@ apiClient.interceptors.response.use(
       originalRequest._retry = true;
       isRefreshing = true;
 
-      const refreshToken = localStorage.getItem("yaga_refresh_token");
-      if (!refreshToken) {
-        localStorage.removeItem("yaga_token");
-        localStorage.removeItem("yaga_refresh_token");
-        localStorage.removeItem("yaga_user");
-        isRefreshing = false;
-        return Promise.reject(error);
-      }
-
       try {
-        const response = await axios.post(`${API_BASE_URL}/api/auth/refresh`, {
-          refreshToken,
-        });
-        const { token: newToken, refreshToken: newRefreshToken } =
-          response.data;
+        const response = await axios.post(
+          `${API_BASE_URL}/api/auth/refresh`,
+          {},
+          { withCredentials: true },
+        );
+        const { token: newToken } = response.data;
 
         localStorage.setItem("yaga_token", newToken);
-        localStorage.setItem("yaga_refresh_token", newRefreshToken);
-
         apiClient.defaults.headers.common.Authorization = `Bearer ${newToken}`;
         processQueue(null, newToken);
 
@@ -91,7 +83,6 @@ apiClient.interceptors.response.use(
       } catch (refreshError) {
         processQueue(refreshError, null);
         localStorage.removeItem("yaga_token");
-        localStorage.removeItem("yaga_refresh_token");
         localStorage.removeItem("yaga_user");
         return Promise.reject(refreshError);
       } finally {

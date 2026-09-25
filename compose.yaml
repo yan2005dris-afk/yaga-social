@@ -61,6 +61,8 @@ services:
       - RUSTFS_ACCESS_KEY=${RUSTFS_ACCESS_KEY}
       - RUSTFS_SECRET_KEY=${RUSTFS_SECRET_KEY}
       - RUSTFS_BUCKET=${RUSTFS_BUCKET:-social-media-assets}
+      - YAGA_SEED_ENABLED=${YAGA_SEED_ENABLED:-true}
+      - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:3000,http://localhost:5173,http://localhost:80}
     depends_on:
       yaga-neo4j:
         condition: service_healthy
