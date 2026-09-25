@@ -1,7 +1,7 @@
-package com.yaga.auth.infrastructure.out.persistence;
+package com.yaga.auth.infrastructure.persistence;
 
-import com.yaga.auth.application.port.out.UserRepositoryPort;
 import com.yaga.auth.domain.model.User;
+import com.yaga.auth.domain.repository.UserRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import java.time.Instant;
@@ -14,7 +14,7 @@ import org.neo4j.driver.Session;
 import org.neo4j.driver.Value;
 
 @ApplicationScoped
-public class Neo4jUserRepositoryAdapter implements UserRepositoryPort {
+public class Neo4jUserRepositoryAdapter implements UserRepository {
 
   private static final String USER_FIELDS =
       "u.id AS id, u.username AS username, u.email AS email, "

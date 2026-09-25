@@ -30,9 +30,12 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
     localStorage.getItem("yaga_token"),
   );
 
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(
+    () => !!localStorage.getItem("yaga_token"),
+  );
 
   const logout = useCallback(() => {
+    authApi.logout().catch(() => {});
     localStorage.removeItem("yaga_token");
     localStorage.removeItem("yaga_refresh_token");
     localStorage.removeItem("yaga_user");
@@ -49,24 +52,19 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
           setUser(currentUser);
           localStorage.setItem("yaga_user", JSON.stringify(currentUser));
         } catch {
-          const storedRefreshToken = localStorage.getItem("yaga_refresh_token");
-          if (storedRefreshToken) {
-            try {
-              const res = await authApi.refresh(storedRefreshToken);
-              localStorage.setItem("yaga_token", res.token);
-              localStorage.setItem("yaga_refresh_token", res.refreshToken);
-              localStorage.setItem("yaga_user", JSON.stringify(res.user));
-              setToken(res.token);
-              setUser(res.user);
-            } catch {
-              logout();
-            }
-          } else {
+          try {
+            const res = await authApi.refresh();
+            localStorage.setItem("yaga_token", res.token);
+            localStorage.setItem("yaga_user", JSON.stringify(res.user));
+            setToken(res.token);
+            setUser(res.user);
+          } catch {
             logout();
           }
+        } finally {
+          setIsLoading(false);
         }
       }
-      setIsLoading(false);
     };
 
     void initAuth();
@@ -77,7 +75,6 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
     try {
       const response = await authApi.login(credentials);
       localStorage.setItem("yaga_token", response.token);
-      localStorage.setItem("yaga_refresh_token", response.refreshToken);
       localStorage.setItem("yaga_user", JSON.stringify(response.user));
       setToken(response.token);
       setUser(response.user);
@@ -91,7 +88,6 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
     try {
       const response = await authApi.register(credentials);
       localStorage.setItem("yaga_token", response.token);
-      localStorage.setItem("yaga_refresh_token", response.refreshToken);
       localStorage.setItem("yaga_user", JSON.stringify(response.user));
       setToken(response.token);
       setUser(response.user);

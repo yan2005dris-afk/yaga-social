@@ -1,4 +1,4 @@
-package com.yaga.auth.infrastructure.in.web;
+package com.yaga.auth.interfaces.rest;
 
 import com.yaga.auth.domain.exception.InvalidCredentialsException;
 import com.yaga.auth.domain.exception.InvalidTokenException;

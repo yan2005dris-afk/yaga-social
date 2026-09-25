@@ -12,14 +12,14 @@ import com.yaga.auth.application.dto.AuthResponse;
 import com.yaga.auth.application.dto.LoginRequest;
 import com.yaga.auth.application.dto.RefreshTokenRequest;
 import com.yaga.auth.application.dto.RegisterRequest;
-import com.yaga.auth.application.port.out.PasswordHasherPort;
-import com.yaga.auth.application.port.out.TokenProviderPort;
-import com.yaga.auth.application.port.out.UserRepositoryPort;
+import com.yaga.auth.application.port.PasswordHasherPort;
+import com.yaga.auth.application.port.TokenProviderPort;
 import com.yaga.auth.domain.exception.InvalidCredentialsException;
 import com.yaga.auth.domain.exception.UserAlreadyExistsException;
 import com.yaga.auth.domain.exception.UserNotFoundException;
 import com.yaga.auth.domain.model.AuthTokens;
 import com.yaga.auth.domain.model.User;
+import com.yaga.auth.domain.repository.UserRepository;
 import java.time.Instant;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,14 +27,14 @@ import org.junit.jupiter.api.Test;
 
 class AuthServiceTest {
 
-  private UserRepositoryPort userRepository;
+  private UserRepository userRepository;
   private PasswordHasherPort passwordHasher;
   private TokenProviderPort tokenProvider;
   private AuthService authService;
 
   @BeforeEach
   void setUp() {
-    userRepository = mock(UserRepositoryPort.class);
+    userRepository = mock(UserRepository.class);
     passwordHasher = mock(PasswordHasherPort.class);
     tokenProvider = mock(TokenProviderPort.class);
     authService = new AuthService(userRepository, passwordHasher, tokenProvider);

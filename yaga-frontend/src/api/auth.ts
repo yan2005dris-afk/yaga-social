@@ -23,11 +23,16 @@ export const authApi = {
     return response.data;
   },
 
-  async refresh(refreshToken: string): Promise<AuthResponse> {
-    const response = await apiClient.post<AuthResponse>("/api/auth/refresh", {
-      refreshToken,
-    });
+  async refresh(refreshToken?: string): Promise<AuthResponse> {
+    const response = await apiClient.post<AuthResponse>(
+      "/api/auth/refresh",
+      refreshToken ? { refreshToken } : {},
+    );
     return response.data;
+  },
+
+  async logout(): Promise<void> {
+    await apiClient.post("/api/auth/logout");
   },
 
   async getMe(): Promise<User> {

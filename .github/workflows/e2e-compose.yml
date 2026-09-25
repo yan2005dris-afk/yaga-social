@@ -32,6 +32,9 @@ jobs:
       - name: Create .env from template
         run: cp .env.example .env
 
+      - name: Generate JWT Keys
+        run: bash scripts/generate-jwt-keys.sh
+
       - name: Build and Start Compose Stack
         run: docker compose up -d --build
 
