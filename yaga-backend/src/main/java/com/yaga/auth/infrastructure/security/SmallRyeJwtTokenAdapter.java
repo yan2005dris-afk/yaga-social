@@ -32,9 +32,7 @@ public class SmallRyeJwtTokenAdapter implements TokenProviderPort {
               name = "mp.jwt.verify.issuer",
               defaultValue = "https://yaga-social.com/issuer")
           String issuer,
-      @ConfigProperty(
-              name = "smallrye.jwt.sign.key.location",
-              defaultValue = "/jwt/privateKey.pem")
+      @ConfigProperty(name = "smallrye.jwt.sign.key.location", defaultValue = "/jwt/privateKey.pem")
           String privateKeyLocation,
       JWTParser jwtParser) {
     this.issuer = issuer;
@@ -50,7 +48,8 @@ public class SmallRyeJwtTokenAdapter implements TokenProviderPort {
         String altLocation = location.startsWith("/") ? location.substring(1) : "/" + location;
         return KeyUtils.readPrivateKey(altLocation);
       } catch (Exception ex) {
-        throw new IllegalStateException("Failed to load JWT signing private key from: " + location, ex);
+        throw new IllegalStateException(
+            "Failed to load JWT signing private key from: " + location, ex);
       }
     }
   }
