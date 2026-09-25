@@ -60,6 +60,8 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
           cache: 'maven'
+      - name: Generate JWT Keys
+        run: bash ../scripts/generate-jwt-keys.sh src/main/resources/jwt
       - run: ./mvnw test
 
   coverage:
@@ -90,6 +92,8 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
           cache: 'maven'
+      - name: Generate JWT Keys
+        run: bash ../scripts/generate-jwt-keys.sh src/main/resources/jwt
       - run: ./mvnw test jacoco:report
 
   integration-test:
@@ -120,6 +124,8 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
           cache: 'maven'
+      - name: Generate JWT Keys
+        run: bash ../scripts/generate-jwt-keys.sh src/main/resources/jwt
       - run: ./mvnw verify -DskipUnitTests
 
   build:
@@ -135,4 +141,6 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
           cache: 'maven'
+      - name: Generate JWT Keys
+        run: bash ../scripts/generate-jwt-keys.sh src/main/resources/jwt
       - run: ./mvnw package -DskipTests
