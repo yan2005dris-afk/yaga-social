@@ -25,7 +25,7 @@ describe("AuthPage Component", () => {
 
   it("switches to Sign Up tab when Sign Up button is clicked", () => {
     renderAuthPage();
-    const signUpTab = screen.getByRole("button", { name: /^sign up$/i });
+    const signUpTab = screen.getByRole("tab", { name: /^sign up$/i });
     fireEvent.click(signUpTab);
 
     expect(screen.getByText("Full Name")).toBeInTheDocument();
@@ -39,11 +39,11 @@ describe("AuthPage Component", () => {
 
   it("switches back to Sign In tab", () => {
     renderAuthPage();
-    const signUpTab = screen.getByRole("button", { name: /^sign up$/i });
+    const signUpTab = screen.getByRole("tab", { name: /^sign up$/i });
     fireEvent.click(signUpTab);
     expect(screen.getByText("Full Name")).toBeInTheDocument();
 
-    const signInTab = screen.getByRole("button", { name: /^sign in$/i });
+    const signInTab = screen.getByRole("tab", { name: /^sign in$/i });
     fireEvent.click(signInTab);
     expect(screen.queryByText("Full Name")).not.toBeInTheDocument();
     expect(screen.queryByText("Short Bio")).not.toBeInTheDocument();

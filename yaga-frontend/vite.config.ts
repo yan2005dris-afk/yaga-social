@@ -5,7 +5,7 @@ import { defineConfig } from "vite";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [react(), !process.env.VITEST && tailwindcss()].filter(Boolean),
   test: {
     globals: true,
     environment: "jsdom",

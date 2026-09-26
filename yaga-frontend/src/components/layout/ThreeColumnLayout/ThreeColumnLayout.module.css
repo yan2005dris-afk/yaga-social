@@ -1,0 +1,72 @@
+.pageContainer {
+  min-height: 100vh;
+  background-color: #f1f3f7;
+  color: #1e293b;
+  display: flex;
+  flex-direction: column;
+}
+
+.bannerSlot {
+  width: 100%;
+}
+
+.gridContainer {
+  max-width: 80rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+@media (min-width: 1024px) {
+  .gridContainer {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .leftColumn {
+    grid-column: span 3 / span 3;
+  }
+}
+
+.centerColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+}
+
+@media (min-width: 1024px) {
+  .centerColumn {
+    grid-column: span 6 / span 6;
+  }
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .rightColumn {
+    grid-column: span 3 / span 3;
+  }
+}
+
+/* If no right column provided, expand center */
+.centerExpanded {
+  grid-column: span 9 / span 9;
+}
