@@ -108,10 +108,7 @@ export const MainLayout: FC<MainLayoutProps> = ({ className = "" }) => {
       {/* Grid Container with Persistent Sidebar & Outlet */}
       <div className={styles.gridContainer}>
         {/* Left Sidebar (Sticky on Desktop) */}
-        <aside
-          className={styles.leftSidebar}
-          data-testid="main-layout-sidebar"
-        >
+        <aside className={styles.leftSidebar} data-testid="main-layout-sidebar">
           <UserSummaryCard user={currentUserSummary} />
           <SidebarNav
             unreadMessagesCount={3}
